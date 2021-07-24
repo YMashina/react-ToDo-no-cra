@@ -1,0 +1,51 @@
+button{
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  border: 0.1rem solid #5e5e5e;
+  font-size: 1rem;
+}
+
+.btnGroup{
+  button{
+
+    &:hover {
+      background-color: #9e9e9e;
+    }
+
+    &:not(:last-child){
+      border-right: none;
+    }
+
+    &:last-child {
+      border-radius: 0 5px 5px 0;
+      margin-left: -1px;
+    }
+  }
+}
+
+.addButton{
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  &:hover {
+    background-color: #9e9e9e;
+  }
+}
+
+.alignCenter{
+  display: flex;
+  text-align: center;
+}
+
+.searchInput {
+  flex-grow: 1;
+  color: #5e5e5e;
+  padding: 1rem 1.5rem;
+  border-radius: 5px 0 0 5px;
+  border: 0.1rem solid #5e5e5e;
+  border-right: none;
+  font-size: 1rem;
+  &:focus{
+    outline: none;
+  }
+}

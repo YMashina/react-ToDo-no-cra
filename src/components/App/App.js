@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from './App.scss';
+import './App.scss';
+import styles from './App.module.scss';
 import TaskList from "../TaskList/TaskList";
 import SearchPanel from "../SearchPanel/SearchPanel";
 
@@ -7,8 +8,10 @@ const App = () => {
   return (
     <>
       <h1>Todo</h1>
-      <SearchPanel/>
-      <TaskList/>
+      <div className={styles.flexView}>
+        <SearchPanel/>
+        <TaskList/>
+      </div>
     </>
   );
 };

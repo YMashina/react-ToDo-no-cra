@@ -1,10 +1,10 @@
-import './TaskList.module.scss';
+import styles from './TaskList.module.scss';
 import React from "react";
 import Task from "../Task/Task";
 const TaskList = () => {
   return (
     <>
-      <div className='taskList'>
+      <div className={styles.taskList}>
         <Task/>
         <Task/>
         <Task/>

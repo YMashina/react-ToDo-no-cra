@@ -1,11 +1,21 @@
-.task{
-  &--bordered {
-    width: 10rem;
-    border-radius: 5px;
-    border: 0.1rem #5e5e5e solid;
-    box-shadow: 5px 2px 2px #5e5e5e;
-    padding: 20px;
-    margin: 20px;
+.bordered {
+  border-radius: 5px;
+  border: 0.1rem #5e5e5e solid;
+  box-shadow: 3px 2px 2px #5e5e5e;
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+}
 
-  }
+.flex{
+  display: flex;
+}
+
+.starIcon {
+  margin-right: 1rem;
+}
+
+.checkBox {
+
 }

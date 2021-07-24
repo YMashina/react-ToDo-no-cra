@@ -1,10 +1,14 @@
 import React from 'react';
-import '../../scss/base.scss'
+import styles from './App.scss';
+import TaskList from "../TaskList/TaskList";
+import SearchPanel from "../SearchPanel/SearchPanel";
 
 const App = () => {
   return (
     <>
-      <h4>ххахыхахы</h4>
+      <h1>Todo</h1>
+      <SearchPanel/>
+      <TaskList/>
     </>
   );
 };

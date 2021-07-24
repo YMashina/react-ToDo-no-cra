@@ -1,0 +1,11 @@
+.task{
+  &--bordered {
+    width: 10rem;
+    border-radius: 5px;
+    border: 0.1rem #5e5e5e solid;
+    box-shadow: 5px 2px 2px #5e5e5e;
+    padding: 20px;
+    margin: 20px;
+
+  }
+}

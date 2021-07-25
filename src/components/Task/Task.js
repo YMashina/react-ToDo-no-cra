@@ -18,18 +18,26 @@ import {
 const Task = ({task}) => {
   const tasksSelector = useSelector(selectTasks);
   const dispatch = useDispatch();
-  const [starIcon, setStarIcon] = useState(farStar);
-  const [checkIcon, setCheckIcon] = useState(farSquare);
   const clickImportant = () => {
-    starIcon === farStar ? setStarIcon(faStar) : setStarIcon(farStar);
+    const newTaskList = tasksSelector.map(taskItem => {
+      if (taskItem.id === task.id)
+        taskItem.important = !taskItem.important;
+      return taskItem;
+    });
+    dispatch(loadTasks(newTaskList));
   };
-  const clickDelete = (id) => {
-    const newTaskList = tasksSelector.filter(task => task.id !== id);
+  const clickDelete = () => {
+    const newTaskList = tasksSelector.filter(taskItem => taskItem.id !== task.id);
     dispatch(loadTasks(newTaskList));
   };
 
   const clickCheck = () => {
-    checkIcon === farSquare ? setCheckIcon(farCheckSquare) : setCheckIcon(farSquare);
+    const newTaskList = tasksSelector.map(taskItem => {
+      if (taskItem.id === task.id)
+        taskItem.checked = !taskItem.checked;
+      return taskItem;
+    });
+    dispatch(loadTasks(newTaskList));
   };
 
   return (
@@ -39,12 +47,12 @@ const Task = ({task}) => {
           <FontAwesomeIcon icon={faTrashAlt} className={styles.starIcon}/>
         </div>
         <div onClick={clickImportant}>
-          <FontAwesomeIcon icon={starIcon} className={styles.starIcon}/>
+          <FontAwesomeIcon icon={task.important ? faStar : farStar} className={styles.starIcon}/>
         </div>
-        <div>{task.text}</div>
+        <div className={styles.text}>{task.text}</div>
       </div>
       <div onClick={clickCheck}>
-        <FontAwesomeIcon icon={checkIcon} className={styles.checkBox}/>
+        <FontAwesomeIcon icon={task.checked ? farCheckSquare : farSquare} className={styles.checkBox}/>
       </div>
     </div>
   );

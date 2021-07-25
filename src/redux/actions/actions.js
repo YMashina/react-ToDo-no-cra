@@ -18,8 +18,15 @@ const loadTasks = (newTask) => {
   };
 };
 
+const setFilterAction = () => {
+  return {
+    type: 'SET_FILTER'
+  };
+};
+
 export {
   showCreateTaskAction,
   addNewTaskAction,
-  loadTasks
+  loadTasks,
+  setFilterAction
 }

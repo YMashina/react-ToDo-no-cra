@@ -1,4 +1,5 @@
 .bordered {
+  word-wrap: break-word;
   border-radius: 5px;
   border: 0.1rem #5e5e5e solid;
   box-shadow: 3px 2px 2px #5e5e5e;
@@ -6,7 +7,6 @@
   margin: 1rem 0;
   display: flex;
   justify-content: space-between;
-  transition: 1s;
 
   &:hover{
     .delete{
@@ -17,6 +17,7 @@
 }
 
 .flex{
+  word-wrap: break-word;
   display: flex;
 }
 
@@ -25,10 +26,14 @@
 }
 
 .checkBox {
-
+  margin-left: 1rem;
 }
 
 .delete{
   width:0;
   opacity: 0;
+}
+
+.text{
+  word-break: break-all;
 }

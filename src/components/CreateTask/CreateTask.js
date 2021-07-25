@@ -12,7 +12,7 @@ const CreateTask = () => {
   const [taskInputValue, setTaskInputValue] = useState('');
   const clickAdd = () => {
     if (taskInputValue)
-      dispatch(addNewTaskAction({id: generateHexString(), text: taskInputValue}));
+      dispatch(addNewTaskAction({id: generateHexString(), text: taskInputValue, important: false, checked: false}));
     dispatch(showCreateTaskAction());
   };
   const handleKeyPress = (event) => {

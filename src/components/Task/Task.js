@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styles from './Task.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faStar } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faStar } from '@fortawesome/free-solid-svg-icons';
 import {faSquare as farSquare, faStar as farStar, faCheckSquare as farCheckSquare} from '@fortawesome/free-regular-svg-icons'
 
 const Task = () => {
@@ -21,13 +21,11 @@ const Task = () => {
           <div onClick={clickImportant}>
             <FontAwesomeIcon icon={starIcon} className={styles.starIcon} />
           </div>
-
           <div>Task</div>
         </div>
         <div onClick={clickCheck}>
           <FontAwesomeIcon icon={checkIcon} className={styles.checkBox}/>
         </div>
-
       </div>
     </>
   );

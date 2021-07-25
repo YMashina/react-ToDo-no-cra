@@ -3,23 +3,19 @@ import styles from './SearchPanel.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {useDispatch, useSelector} from 'react-redux';
-import {showCreateTaskAction} from "../../redux/actions/actions";
+import {showCreateTaskAction, setFilterAction} from "../../redux/actions/actions";
 import {selectTasks} from "../../redux/selectors/todoSelectors";
 
 const SearchPanel = () => {
   const dispatch = useDispatch();
-  const tasksSelector = useSelector(selectTasks);
   const [searchInputValue, setSearchInputValue] = useState('')
   const createNewTask = () => {
     dispatch(showCreateTaskAction());
   };
 
   const handleSearchInputChange = (event) => {
+    dispatch(setFilterAction(event.target.value));
     setSearchInputValue(event.target.value);
-    tasksSelector.filter(taskItem => {
-      taskItem.text.includes(searchInputValue);
-    });
-
   };
 
   return (
@@ -47,14 +43,5 @@ const SearchPanel = () => {
 
   );
 };
-
-
-const mapDispatchToProps = dispatch => {
-  return {
-    increaseCounter: () => dispatch(increaseCounter()),
-
-    decreaseCounter: () => dispatch(decreaseCounter()),
-  }
-}
 
 export default SearchPanel;

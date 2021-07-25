@@ -18,9 +18,10 @@ const loadTasks = (newTask) => {
   };
 };
 
-const setFilterAction = () => {
+const setFilterAction = (filter) => {
   return {
-    type: 'SET_FILTER'
+    type: 'SET_FILTER',
+    payload: filter
   };
 };
 

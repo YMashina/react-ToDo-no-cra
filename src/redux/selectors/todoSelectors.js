@@ -10,7 +10,13 @@ const selectTasks = createSelector(
   (todo) => todo.tasks
 );
 
+const selectFilter = createSelector(
+  (state) => state.todo,
+  (todo) => todo.filter
+);
+
 export {
   selectShowCreateTask,
-  selectTasks
+  selectTasks,
+  selectFilter
 }

@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
   showCreateTask: false,
-  tasks: []
+  tasks: [],
+  filter: ''
 };
 
 const todoReducer = (state = INITIAL_STATE, action) => {

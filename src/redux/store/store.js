@@ -14,5 +14,4 @@ const store = createStore(persistedReducer);
 
 const persistor = persistStore(store);
 
-
 export { persistor, store };

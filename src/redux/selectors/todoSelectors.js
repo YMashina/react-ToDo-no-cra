@@ -5,6 +5,12 @@ const selectShowCreateTask = createSelector(
   (todo) => todo.showCreateTask
 );
 
+const selectTasks = createSelector(
+  (state) => state.todo,
+  (todo) => todo.tasks
+);
+
 export {
-  selectShowCreateTask
+  selectShowCreateTask,
+  selectTasks
 }

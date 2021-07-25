@@ -1,7 +1,6 @@
-import { increaseCounter, decreaseCounter } from '../actions/actions';
-
 const INITIAL_STATE = {
   showCreateTask: false,
+  tasks: []
 };
 
 const todoReducer = (state = INITIAL_STATE, action) => {
@@ -11,10 +10,16 @@ const todoReducer = (state = INITIAL_STATE, action) => {
         ...state, showCreateTask: !state.showCreateTask
       };
 
-    case 'DECREMENT':
+    case 'ADD_NEW_TASK':
       return {
-        ...state, count: state.count - 1,
+        ...state, tasks: [action.payload, ...state.tasks],
       };
+
+    case 'LOAD_TASKS':
+      return {
+        ...state, tasks: action.payload,
+      };
+
     default: return state;
   }
 

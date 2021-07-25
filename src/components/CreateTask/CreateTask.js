@@ -1,23 +1,41 @@
 import styles from './CreateTask.module.scss';
-import React from "react";
-import {connect, useDispatch} from "react-redux";
+import React, {useState} from "react";
+import { useDispatch} from "react-redux";
 import {
   showCreateTaskAction,
-  decreaseCounter,
+  addNewTaskAction,
 } from '../../redux/actions/actions'
+import generateHexString from "../../hexStringGenerator";
 
 const CreateTask = () => {
   const dispatch = useDispatch();
+  const [taskInputValue, setTaskInputValue] = useState('');
   const clickAdd = () => {
+    if (taskInputValue)
+      dispatch(addNewTaskAction({id: generateHexString(), text: taskInputValue}));
     dispatch(showCreateTaskAction());
   };
+  const handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      clickAdd();
+    }
+  }
+  const handleTaskInputChange = (event) => {
+    setTaskInputValue(event.target.value);
+  };
+
   return (
-    <>
+    <div>
       <div className={styles.flexAddTask}>
-        <input placeholder='Type your task...' className={styles.inputTask}/>
+        <input
+          placeholder='Type your task...'
+          className={styles.inputTask}
+          value={taskInputValue}
+          onChange={handleTaskInputChange}
+          onKeyPress={handleKeyPress}/>
         <button className={styles.addButton} onClick={clickAdd}>Add</button>
       </div>
-    </>
+    </div>
   );
 };
 

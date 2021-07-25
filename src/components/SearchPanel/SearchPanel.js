@@ -2,13 +2,11 @@ import React, {useState} from 'react';
 import styles from './SearchPanel.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
-import {useDispatch, useSelector} from 'react-redux';
-import {selectShowCreateTask} from "../../redux/selectors/todoSelectors";
+import {useDispatch} from 'react-redux';
 import {showCreateTaskAction} from "../../redux/actions/actions";
 
 const SearchPanel = () => {
-  const dispatch = useDispatch()
-  //const showCreateTask = useSelector(selectShowCreateTask);
+  const dispatch = useDispatch();
   const createNewTask = () => {
     dispatch(showCreateTaskAction());
   };

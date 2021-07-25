@@ -4,13 +4,22 @@ const showCreateTaskAction = () => {
   };
 };
 
-const decreaseCounter = () => {
+const addNewTaskAction = (newTask) => {
   return {
-    type: 'DECREMENT',
+    type: 'ADD_NEW_TASK',
+    payload: newTask
+  };
+};
+
+const loadTasks = (newTask) => {
+  return {
+    type: 'LOAD_TASKS',
+    payload: newTask
   };
 };
 
 export {
   showCreateTaskAction,
-  decreaseCounter
+  addNewTaskAction,
+  loadTasks
 }

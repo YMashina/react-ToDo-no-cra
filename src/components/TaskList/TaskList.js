@@ -7,11 +7,7 @@ import { filter } from "./constants";
 
 const TaskList = () => {
   const tasksSelector = useSelector(selectTasks);
-  console.log("tasksSelector");
-  console.log(tasksSelector);
   const filterSelector = useSelector(selectFilter);
-  console.log("filterSelector");
-  console.log(filterSelector);
   const filteredTasks = filter(tasksSelector, filterSelector);
   return (
     <>

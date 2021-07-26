@@ -1,11 +1,4 @@
-const INITIAL_STATE = {
-  showCreateTask: false,
-  tasks: [],
-  filters: {
-    search: "",
-    isDone: false,
-  },
-};
+import INITIAL_STATE from "./initialState";
 
 const todoReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {

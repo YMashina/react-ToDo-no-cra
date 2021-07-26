@@ -8,15 +8,18 @@ import {
   setFilterAction,
 } from "../../redux/actions/actions";
 import { selectFilter } from "../../redux/selectors/todoSelectors";
+import INITIAL_STATE from "../../redux/reducers/initialState";
+import getDropdownName from "./constants";
 
 const SearchPanel = () => {
   const dispatch = useDispatch();
   const filterSelector = useSelector(selectFilter);
-  const doneButtonStyle = filterSelector.isDone ? styles.buttonClicked : null;
-  const allButtonStyle = filterSelector.isDone ? null : styles.buttonClicked;
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownName = getDropdownName(filterSelector);
   const [searchInputValue, setSearchInputValue] = useState(
     filterSelector.search
   );
+
   const createNewTask = () => {
     dispatch(showCreateTaskAction());
   };
@@ -29,11 +32,27 @@ const SearchPanel = () => {
   };
 
   const clickFilterDone = () => {
-    dispatch(setFilterAction({ ...filterSelector, isDone: true }));
+    dispatch(setFilterAction({ ...INITIAL_STATE.filters, isDone: true }));
+    setShowDropdown(false);
   };
 
   const clickFilterAll = () => {
-    dispatch(setFilterAction({ ...filterSelector, isDone: false }));
+    dispatch(setFilterAction({ ...INITIAL_STATE.filters }));
+    setShowDropdown(false);
+  };
+
+  const clickFilterNotDone = () => {
+    dispatch(setFilterAction({ ...INITIAL_STATE.filters, notDone: true }));
+    setShowDropdown(false);
+  };
+
+  const clickFilterImportant = () => {
+    dispatch(setFilterAction({ ...INITIAL_STATE.filters, important: true }));
+    setShowDropdown(false);
+  };
+
+  const clickDropdown = () => {
+    setShowDropdown(!showDropdown);
   };
 
   return (
@@ -47,12 +66,17 @@ const SearchPanel = () => {
           value={searchInputValue}
         />
         <div className={styles.btnGroup}>
-          <button className={doneButtonStyle} onClick={clickFilterDone}>
-            Done
-          </button>
-          <button className={allButtonStyle} onClick={clickFilterAll}>
-            All
-          </button>
+          <button onClick={clickDropdown}>{dropdownName}</button>
+          {showDropdown ? (
+            <div className={styles.dropdown}>
+              <ul>
+                <li onClick={clickFilterDone}>Done</li>
+                <li onClick={clickFilterNotDone}> Not done</li>
+                <li onClick={clickFilterImportant}> Important </li>
+                <li onClick={clickFilterAll}>All</li>
+              </ul>
+            </div>
+          ) : null}
         </div>
         <button className={styles.addButton} onClick={createNewTask}>
           <FontAwesomeIcon icon={faPlus} />

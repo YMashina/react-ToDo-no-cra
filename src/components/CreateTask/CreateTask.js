@@ -5,7 +5,7 @@ import {
   showCreateTaskAction,
   addNewTaskAction,
 } from "../../redux/actions/actions";
-import generateHexString from "../../hexStringGenerator";
+import generateHexString from "./constants";
 
 const CreateTask = () => {
   const dispatch = useDispatch();

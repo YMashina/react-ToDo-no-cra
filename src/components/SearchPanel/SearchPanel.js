@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./SearchPanel.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   showCreateTaskAction,
@@ -66,14 +66,16 @@ const SearchPanel = () => {
           value={searchInputValue}
         />
         <div className={styles.btnGroup}>
-          <button onClick={clickDropdown}>{dropdownName}</button>
+          <button onClick={clickDropdown}>
+            {dropdownName} <FontAwesomeIcon icon={faChevronDown} />
+          </button>
           {showDropdown ? (
             <div className={styles.dropdown}>
               <ul>
+                <li onClick={clickFilterAll}>All</li>
                 <li onClick={clickFilterDone}>Done</li>
                 <li onClick={clickFilterNotDone}> Not done</li>
                 <li onClick={clickFilterImportant}> Important </li>
-                <li onClick={clickFilterAll}>All</li>
               </ul>
             </div>
           ) : null}

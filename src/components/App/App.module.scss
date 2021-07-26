@@ -1,6 +1,7 @@
 .flexView{
   display: flex;
   flex-direction: column;
-  width: 70%;
+  max-width: 40rem;
+  min-width: 25rem;
   margin: auto;
 }

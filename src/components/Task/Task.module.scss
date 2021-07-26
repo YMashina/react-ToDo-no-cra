@@ -7,13 +7,6 @@
   margin: 1rem 0;
   display: flex;
   justify-content: space-between;
-
-  &:hover{
-    .delete{
-      width: 2rem;
-      opacity: 1;
-    }
-  }
 }
 
 .flex{
@@ -29,11 +22,11 @@
   margin-left: 1rem;
 }
 
-.delete{
-  width:0;
-  opacity: 0;
-}
 
 .text{
   word-break: break-all;
+}
+
+.delete{
+  margin-right: 0.5rem;
 }

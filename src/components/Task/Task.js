@@ -47,7 +47,7 @@ const Task = ({ task }) => {
             clickDelete(task.id);
           }}
         >
-          <FontAwesomeIcon icon={faTrashAlt} className={styles.starIcon} />
+          <FontAwesomeIcon icon={faTrashAlt} className={styles.delete} />
         </div>
         <div onClick={clickImportant}>
           <FontAwesomeIcon

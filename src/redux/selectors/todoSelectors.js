@@ -1,4 +1,4 @@
-import {createSelector} from "reselect";
+import { createSelector } from "reselect";
 
 const selectShowCreateTask = createSelector(
   (state) => state.todo,
@@ -12,11 +12,7 @@ const selectTasks = createSelector(
 
 const selectFilter = createSelector(
   (state) => state.todo,
-  (todo) => todo.filter
+  (todo) => todo.filters
 );
 
-export {
-  selectShowCreateTask,
-  selectTasks,
-  selectFilter
-}
+export { selectShowCreateTask, selectTasks, selectFilter };

@@ -1,21 +1,39 @@
-import React, {useState} from 'react';
-import styles from './SearchPanel.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faPlus} from '@fortawesome/free-solid-svg-icons';
-import {useDispatch, useSelector} from 'react-redux';
-import {showCreateTaskAction, setFilterAction} from "../../redux/actions/actions";
-import {selectTasks} from "../../redux/selectors/todoSelectors";
+import React, { useState } from "react";
+import styles from "./SearchPanel.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  showCreateTaskAction,
+  setFilterAction,
+} from "../../redux/actions/actions";
+import { selectFilter } from "../../redux/selectors/todoSelectors";
 
 const SearchPanel = () => {
   const dispatch = useDispatch();
-  const [searchInputValue, setSearchInputValue] = useState('')
+  const filterSelector = useSelector(selectFilter);
+  const doneButtonStyle = filterSelector.isDone ? styles.buttonClicked : null;
+  const allButtonStyle = filterSelector.isDone ? null : styles.buttonClicked;
+  const [searchInputValue, setSearchInputValue] = useState(
+    filterSelector.search
+  );
   const createNewTask = () => {
     dispatch(showCreateTaskAction());
   };
 
   const handleSearchInputChange = (event) => {
-    dispatch(setFilterAction(event.target.value));
+    dispatch(
+      setFilterAction({ ...filterSelector, search: event.target.value })
+    );
     setSearchInputValue(event.target.value);
+  };
+
+  const clickFilterDone = () => {
+    dispatch(setFilterAction({ ...filterSelector, isDone: true }));
+  };
+
+  const clickFilterAll = () => {
+    dispatch(setFilterAction({ ...filterSelector, isDone: false }));
   };
 
   return (
@@ -23,15 +41,16 @@ const SearchPanel = () => {
       <div className={styles.alignCenter}>
         <input
           className={styles.searchInput}
-          type='text'
-          placeholder='Search tasks...'
+          type="text"
+          placeholder="Search tasks..."
           onChange={handleSearchInputChange}
-          value={searchInputValue}/>
+          value={searchInputValue}
+        />
         <div className={styles.btnGroup}>
-          <button>
+          <button className={doneButtonStyle} onClick={clickFilterDone}>
             Done
           </button>
-          <button>
+          <button className={allButtonStyle} onClick={clickFilterAll}>
             All
           </button>
         </div>
@@ -40,7 +59,6 @@ const SearchPanel = () => {
         </button>
       </div>
     </>
-
   );
 };
 

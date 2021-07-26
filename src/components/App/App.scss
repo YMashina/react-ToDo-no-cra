@@ -3,7 +3,7 @@ $primary-color: pink;
 
 body{
   font-family: "Roboto Thin", sans-serif;
-
+  width: 100%;
 }
 
 h1 {
@@ -11,3 +11,6 @@ h1 {
   text-align: center;
 }
 
+#root{
+  width: 100%;
+}

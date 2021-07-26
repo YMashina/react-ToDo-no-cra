@@ -1,8 +1,0 @@
-body{font-family:"Roboto Thin", sans-serif}h1{color:#5e5e5e;text-align:center}
-
-.taskList{color:#1e1e1e;display:table;margin:0 auto}
-
-.task--bordered{width:10rem;border-radius:5px;border:0.1rem #5e5e5e solid;box-shadow:5px 2px 2px #5e5e5e;padding:20px;margin:20px}
-
-input{width:10rem;display:table;margin:0 auto;color:#5e5e5e;padding:1rem 2rem;border-radius:5px;border:1px solid #5e5e5e;font-size:1rem}input:focus{outline:none}
-

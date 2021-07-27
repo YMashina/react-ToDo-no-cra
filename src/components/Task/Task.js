@@ -7,6 +7,7 @@ import {
   faStar as farStar,
   faCheckSquare as farCheckSquare,
   faTrashAlt,
+  faSave as farSave,
 } from "@fortawesome/free-regular-svg-icons";
 import { useDispatch } from "react-redux";
 import { selectTasks } from "../../redux/selectors/todoSelectors";
@@ -14,8 +15,11 @@ import { useSelector } from "react-redux";
 import { loadTasks } from "../../redux/actions/actions";
 
 const Task = ({ task }) => {
+  const [taskInputValue, setTaskInputValue] = useState(task.text);
+  const [isBeingEdited, setIsBeingEdited] = useState(false);
   const tasksSelector = useSelector(selectTasks);
   const dispatch = useDispatch();
+
   const clickImportant = () => {
     const newTaskList = tasksSelector.map((taskItem) => {
       if (taskItem.id === task.id) taskItem.important = !taskItem.important;
@@ -38,38 +42,76 @@ const Task = ({ task }) => {
     dispatch(loadTasks(newTaskList));
   };
 
-  const clickEdit = () => {};
+  const handleTaskInputChange = (event) => {
+    setTaskInputValue(event.target.value);
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      clickSave();
+    }
+  };
+  const clickEdit = () => {
+    setIsBeingEdited(true);
+  };
+
+  const clickSave = () => {
+    const newTaskList = tasksSelector.map((taskItem) => {
+      if (taskItem.id === task.id) taskItem.text = taskInputValue;
+      return taskItem;
+    });
+    dispatch(loadTasks(newTaskList));
+    setIsBeingEdited(false);
+  };
 
   return (
     <div className={styles.bordered}>
-      <div className={styles.flex}>
-        <div
-          className={styles.delete}
-          onClick={() => {
-            clickDelete(task.id);
-          }}
-        >
-          <FontAwesomeIcon icon={faTrashAlt} className={styles.delete} />
-        </div>
-        <div onClick={clickImportant}>
-          <FontAwesomeIcon
-            icon={task.important ? faStar : farStar}
-            className={styles.starIcon}
+      {isBeingEdited ? (
+        <>
+          <input
+            className={styles.editInput}
+            value={taskInputValue}
+            onChange={handleTaskInputChange}
+            onKeyPress={handleKeyPress}
           />
-        </div>
-        <div className={styles.text}>{task.text}</div>
-      </div>
-      <div className={styles.flex}>
-        <div onClick={clickEdit}>
-          <FontAwesomeIcon icon={faPen} className={styles.edit} />
-        </div>
-        <div onClick={clickCheck}>
-          <FontAwesomeIcon
-            icon={task.checked ? farCheckSquare : farSquare}
-            className={styles.checkBox}
-          />
-        </div>
-      </div>
+          <div className={styles.saveIcon} onClick={clickSave}>
+            <FontAwesomeIcon icon={farSave} />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className={styles.flex}>
+            <div
+              className={styles.delete}
+              onClick={() => {
+                clickDelete(task.id);
+              }}
+            >
+              <FontAwesomeIcon icon={faTrashAlt} className={styles.delete} />
+            </div>
+            <div onClick={clickImportant}>
+              <FontAwesomeIcon
+                icon={task.important ? faStar : farStar}
+                className={styles.starIcon}
+              />
+            </div>
+            <div className={styles.text}>{task.text}</div>
+          </div>
+          <div className={styles.flex}>
+            <div className={styles.flex}>
+              <div onClick={clickEdit}>
+                <FontAwesomeIcon icon={faPen} className={styles.edit} />
+              </div>
+              <div onClick={clickCheck}>
+                <FontAwesomeIcon
+                  icon={task.checked ? farCheckSquare : farSquare}
+                  className={styles.checkBox}
+                />
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -21,9 +21,7 @@ const TaskList = () => {
         </ul>
       ) : (
         <div className={styles.noTasksFound}>{`No tasks found${
-          filterSelector.search.length > 0
-            ? `: ${filterSelector.search}`
-            : ". Create one!"
+          filterSelector.search.length > 0 ? `: ${filterSelector.search}` : "."
         }`}</div>
       )}
     </>

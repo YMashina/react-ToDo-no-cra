@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import styles from "./SearchPanel.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faChevronDown,
+  faChevronUp,
+} from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   showCreateTaskAction,
@@ -16,6 +20,7 @@ const SearchPanel = () => {
   const filterSelector = useSelector(selectFilter);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownName = getDropdownName(filterSelector);
+  const [dropdownIcon, setDropdownIcon] = useState(faChevronDown);
   const [searchInputValue, setSearchInputValue] = useState(
     filterSelector.search
   );
@@ -52,6 +57,9 @@ const SearchPanel = () => {
   };
 
   const clickDropdown = () => {
+    setDropdownIcon(
+      dropdownIcon === faChevronDown ? faChevronUp : faChevronDown
+    );
     setShowDropdown(!showDropdown);
   };
 
@@ -67,7 +75,7 @@ const SearchPanel = () => {
         />
         <div className={styles.btnGroup}>
           <button onClick={clickDropdown}>
-            {dropdownName} <FontAwesomeIcon icon={faChevronDown} />
+            {dropdownName} <FontAwesomeIcon icon={dropdownIcon} />
           </button>
           {showDropdown ? (
             <div className={styles.dropdown}>

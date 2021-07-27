@@ -1,7 +1,9 @@
+$border-style: 0.1rem solid #5e5e5e;
+
 button{
   cursor: pointer;
   padding: 1rem 1.5rem;
-  border: 0.1rem solid #5e5e5e;
+  border: $border-style;
   font-size: 1rem;
 }
 
@@ -40,7 +42,7 @@ button{
   color: #5e5e5e;
   padding: 1rem 1.5rem;
   border-radius: 5px 0 0 5px;
-  border: 0.1rem solid #5e5e5e;
+  border: $border-style;
   border-right: none;
   font-size: 1rem;
   &:focus{
@@ -50,7 +52,7 @@ button{
 
 .dropdown {
   position: absolute;
-
+  width: 5.9rem;
   list-style-type: none;
 
   ul {
@@ -61,7 +63,13 @@ button{
   li {
     padding: 0.5rem;
     background: white;
-    border: 0.1rem solid #5e5e5e;
+
+    &:last-child{
+      border-bottom: 1px solid #5e5e5e;
+      border-radius: 0px 0px 5px 5px;
+    }
+    border-right: $border-style;
+    border-left: $border-style;
   }
 
   li:hover {

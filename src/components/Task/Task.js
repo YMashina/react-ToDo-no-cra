@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Task.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faPen } from "@fortawesome/free-solid-svg-icons";
@@ -13,12 +13,14 @@ import { useDispatch } from "react-redux";
 import { selectTasks } from "../../redux/selectors/todoSelectors";
 import { useSelector } from "react-redux";
 import { loadTasks } from "../../redux/actions/actions";
+import * as ReactDOM from "react-dom";
 
 const Task = ({ task }) => {
   const [taskInputValue, setTaskInputValue] = useState(task.text);
   const [isBeingEdited, setIsBeingEdited] = useState(false);
   const tasksSelector = useSelector(selectTasks);
   const dispatch = useDispatch();
+  const inputRef = useRef();
 
   const clickImportant = () => {
     const newTaskList = tasksSelector.map((taskItem) => {
@@ -64,11 +66,16 @@ const Task = ({ task }) => {
     setIsBeingEdited(false);
   };
 
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [isBeingEdited]);
+
   return (
     <div className={styles.bordered}>
       {isBeingEdited ? (
         <>
           <input
+            ref={inputRef}
             className={styles.editInput}
             value={taskInputValue}
             onChange={handleTaskInputChange}

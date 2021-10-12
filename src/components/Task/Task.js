@@ -75,7 +75,9 @@ const Task = ({ task }) => {
 
   return (
     <div
-      className={`${styles.bordered} ${task.checked ? styles.taskDone : null}`}
+      className={`${styles.bordered} ${task.checked && styles.taskDone} ${
+        isBeingEdited && styles.editing
+      }`}
     >
       {isBeingEdited ? (
         <>
@@ -105,9 +107,11 @@ const Task = ({ task }) => {
           </div>
           <div className={styles.flex}>
             <div className={styles.flex}>
-              <div onClick={clickEdit}>
-                <VscEdit className={styles.edit} />
-              </div>
+              {task.checked ? null : (
+                <div onClick={clickEdit}>
+                  <VscEdit className={styles.edit} />
+                </div>
+              )}
 
               <div
                 className={styles.delete}

@@ -99,11 +99,13 @@ button{
     li {
       height: 1.3rem;
       font-size: 1.3rem;
+
+      &:hover {
+        cursor: pointer;
+        color: #1e1e1e;
+      }
     }
   }
 
-  li:hover {
-    cursor: pointer;
-    color: #1e1e1e;
-  }
+
 }

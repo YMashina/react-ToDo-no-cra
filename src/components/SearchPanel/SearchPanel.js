@@ -84,12 +84,16 @@ const SearchPanel = () => {
             }`}
           >
             <ul>
-              {dropdownName !== "All" && <li onClick={clickFilterAll}>All</li>}
+              {dropdownName !== "All" && (
+                <li onClick={showDropdown ? clickFilterAll : null}>All</li>
+              )}
               {dropdownName !== "Done" && (
-                <li onClick={clickFilterDone}>Done</li>
+                <li onClick={showDropdown ? clickFilterDone : null}>Done</li>
               )}
               {dropdownName !== "Active" && (
-                <li onClick={clickFilterNotDone}>Active</li>
+                <li onClick={showDropdown ? clickFilterNotDone : null}>
+                  Active
+                </li>
               )}
             </ul>
           </div>

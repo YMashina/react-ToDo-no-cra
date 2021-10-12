@@ -23,8 +23,8 @@ const filter = (tasksSelector, filterSelector) => {
     filteredTasks = filteredTasks.filter((task) => task.important);
   }
 
-  filteredTasks.sort(compareImportant);
-  filteredTasks.sort(compareDone);
+  //filteredTasks.sort(compareImportant);
+  //filteredTasks.sort(compareDone);
   return filteredTasks;
 };
 

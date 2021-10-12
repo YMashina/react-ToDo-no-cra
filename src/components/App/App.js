@@ -8,13 +8,12 @@ import CreateTask from "../CreateTask/CreateTask";
 import { selectShowCreateTask } from "../../redux/selectors/todoSelectors";
 
 const App = () => {
-  const showCreateTask = useSelector(selectShowCreateTask);
   return (
     <>
-      <h1>Todo</h1>
+      <h1>ToDo</h1>
       <div className={styles.flexView}>
         <SearchPanel />
-        {showCreateTask ? <CreateTask /> : null}
+        <CreateTask />
         <TaskList />
       </div>
     </>

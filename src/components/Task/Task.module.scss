@@ -1,12 +1,59 @@
+$font-size: 1.3rem;
+$base-color: rgba(152, 152, 152, 0.37);
+$base-color-hover: rgba(94, 94, 94, 0.35);
+$base-color-done: rgba(210, 210, 210, 0.35);
+
 .bordered {
   word-wrap: break-word;
-  border-radius: 5px;
-  border: 0.1rem #5e5e5e solid;
-  box-shadow: 3px 2px 2px #5e5e5e;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   padding: 1rem 1.5rem;
-  margin: 1rem 0;
+  margin: 0.7rem 0;
   display: flex;
   justify-content: space-between;
+  transition: 0.5s;
+
+  svg{
+    transition: 0.5s;
+    opacity: 0;
+  }
+
+  &:hover{
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    .delete, .checkBox, .edit {
+      opacity: 1;
+    }
+    svg{
+      opacity: 1;
+    }
+  }
+
+  &.taskDone{
+    color: #9e9e9e;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    .checkBox {
+      opacity: 0.4;
+    }
+  }
+}
+
+.checkBox, .edit, .delete {
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.checkBox {
+  color: rgba(84, 84, 84, 0.47);
+  margin-right: 1rem;
+}
+
+.delete{
+  color: rgba(86, 48, 48, 0.47);
+  margin-left: 0.5rem;
+}
+
+.edit{
+  color: rgba(6, 22, 91, 0.31);
 }
 
 .flex{
@@ -18,26 +65,9 @@
   margin-right: 1rem;
 }
 
-.checkBox {
-  margin-left: 1rem;
-}
-
-
-.text{
-  word-break: break-all;
-}
-
-.delete{
-  margin-right: 0.5rem;
-}
-
-.edit {
-
-}
-
 .editInput{
   flex: 1;
-  font-size: 1rem;
+  font-size: $font-size;
   outline: none;
   border: 0;
 
@@ -45,4 +75,8 @@
 
 .saveIcon {
   margin-left: 1rem;
+}
+
+.text{
+  word-break: break-all;
 }

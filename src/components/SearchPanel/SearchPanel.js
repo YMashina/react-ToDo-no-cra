@@ -14,6 +14,7 @@ import {
 import { selectFilter } from "../../redux/selectors/todoSelectors";
 import INITIAL_STATE from "../../redux/reducers/initialState";
 import getDropdownName from "./constants";
+import { IoIosAddCircleOutline, IoIosArrowRoundDown } from "react-icons/io";
 
 const SearchPanel = () => {
   const dispatch = useDispatch();
@@ -75,21 +76,26 @@ const SearchPanel = () => {
         />
         <div className={styles.btnGroup}>
           <button onClick={clickDropdown}>
-            {dropdownName} <FontAwesomeIcon icon={dropdownIcon} />
+            {dropdownName} <IoIosArrowRoundDown />
           </button>
-          {showDropdown ? (
-            <div className={styles.dropdown}>
-              <ul>
-                <li onClick={clickFilterAll}>All</li>
+          <div
+            className={`${styles.dropdown} ${
+              showDropdown ? styles.show : null
+            }`}
+          >
+            <ul>
+              {dropdownName !== "All" && <li onClick={clickFilterAll}>All</li>}
+              {dropdownName !== "Done" && (
                 <li onClick={clickFilterDone}>Done</li>
-                <li onClick={clickFilterNotDone}> Not done</li>
-                <li onClick={clickFilterImportant}> Important </li>
-              </ul>
-            </div>
-          ) : null}
+              )}
+              {dropdownName !== "Active" && (
+                <li onClick={clickFilterNotDone}>Active</li>
+              )}
+            </ul>
+          </div>
         </div>
         <button className={styles.addButton} onClick={createNewTask}>
-          <FontAwesomeIcon icon={faPlus} />
+          <IoIosAddCircleOutline />
         </button>
       </div>
     </>

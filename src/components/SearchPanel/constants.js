@@ -3,7 +3,7 @@ const getDropdownName = (filterSelector) => {
   if (filterSelector.isDone) {
     name = "Done";
   } else if (filterSelector.notDone) {
-    name = "Not Done";
+    name = "Active";
   } else if (filterSelector.important) {
     name = "Important";
   } else name = "All";

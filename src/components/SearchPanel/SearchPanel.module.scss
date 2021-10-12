@@ -1,34 +1,44 @@
-$border-style: 0.1rem solid #5e5e5e;
+$base-radius: 15px;
+$base-color: rgba(152, 152, 152, 0.37);
+$border-style: 0.1rem solid $base-color;
+$font-size: 1.3rem;
+
 
 button{
+  font-family: 'Work Sans', sans-serif;
   cursor: pointer;
   padding: 1rem 1.5rem;
   border: $border-style;
-  font-size: 1rem;
+  font-size: $font-size;
 }
 
 .btnGroup{
+
   svg {
     margin-left: 0.5rem;
     vertical-align: bottom;
-    color: #5e5e5e;
+    color: $base-color;
   }
 
   button{
+    background: white;
+    transition: 0.5s;
+    border: none;
+    color: #7e7e7e;
     &:hover {
-      background-color: #9e9e9e;
+      color: #212121;
     }
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 $base-radius $base-radius 0;
   }
 }
 
 .addButton{
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
-  margin-left: 0.5rem;
-  text-align: center;
+  transition: 0.5s;
+  border: none;
+  color: #9e9e9e;
+  background: none;
   &:hover {
-    background-color: #9e9e9e;
+    color: $base-color;
   }
 }
 
@@ -38,42 +48,61 @@ button{
 }
 
 .searchInput {
+  font-family: 'Work Sans', sans-serif;
   flex-grow: 1;
-  color: #5e5e5e;
+  color: #3d3d3d;
   padding: 1rem 1.5rem;
-  border-radius: 5px 0 0 5px;
-  border: $border-style;
-  border-right: none;
-  font-size: 1rem;
+  border-radius: $base-radius 0 0 $base-radius;
+  border: none;
+  font-size: $font-size;
+
+  &::placeholder{
+    color: #afafaf;
+  }
+
   &:focus{
     outline: none;
   }
 }
 
 .dropdown {
+  transition: all 0.5s;
   position: absolute;
-  width: 5.9rem;
+  width: 6.5rem;
   list-style-type: none;
+  height: 0;
+  opacity: 0;
 
   ul {
     list-style: none;
     padding: 0;
     margin: 0;
+
   }
   li {
+    font-size: 0.5rem;
+    transition: 0.5s;
+    height: 0;
     padding: 0.5rem;
     background: white;
+    color: #858585;
 
     &:last-child{
-      border-bottom: 1px solid #5e5e5e;
-      border-radius: 0px 0px 5px 5px;
+      border-radius: 0px 0px $base-radius $base-radius;
     }
-    border-right: $border-style;
-    border-left: $border-style;
+
+  }
+
+  &.show{
+    opacity: 1;
+    li {
+      height: 1.3rem;
+      font-size: 1.3rem;
+    }
   }
 
   li:hover {
-    background-color: #9e9e9e;
     cursor: pointer;
+    color: #1e1e1e;
   }
 }

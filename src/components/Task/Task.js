@@ -14,6 +14,9 @@ import { selectTasks } from "../../redux/selectors/todoSelectors";
 import { useSelector } from "react-redux";
 import { loadTasks } from "../../redux/actions/actions";
 import * as ReactDOM from "react-dom";
+import { BsCircle, BsCheckCircle, BsArrowDown } from "react-icons/bs";
+import { VscEdit } from "react-icons/vsc";
+import { AiOutlineDelete, AiOutlineEnter } from "react-icons/ai";
 
 const Task = ({ task }) => {
   const [taskInputValue, setTaskInputValue] = useState(task.text);
@@ -71,7 +74,9 @@ const Task = ({ task }) => {
   }, [isBeingEdited]);
 
   return (
-    <div className={styles.bordered}>
+    <div
+      className={`${styles.bordered} ${task.checked ? styles.taskDone : null}`}
+    >
       {isBeingEdited ? (
         <>
           <input
@@ -82,38 +87,35 @@ const Task = ({ task }) => {
             onKeyPress={handleKeyPress}
           />
           <div className={styles.saveIcon} onClick={clickSave}>
-            <FontAwesomeIcon icon={farSave} />
+            <BsArrowDown />
           </div>
         </>
       ) : (
         <>
           <div className={styles.flex}>
-            <div
-              className={styles.delete}
-              onClick={() => {
-                clickDelete(task.id);
-              }}
-            >
-              <FontAwesomeIcon icon={faTrashAlt} className={styles.delete} />
+            <div onClick={clickCheck}>
+              {task.checked ? (
+                <BsCheckCircle className={styles.checkBox} />
+              ) : (
+                <BsCircle className={styles.checkBox} />
+              )}
             </div>
-            <div onClick={clickImportant}>
-              <FontAwesomeIcon
-                icon={task.important ? faStar : farStar}
-                className={styles.starIcon}
-              />
-            </div>
+
             <div className={styles.text}>{task.text}</div>
           </div>
           <div className={styles.flex}>
             <div className={styles.flex}>
               <div onClick={clickEdit}>
-                <FontAwesomeIcon icon={faPen} className={styles.edit} />
+                <VscEdit className={styles.edit} />
               </div>
-              <div onClick={clickCheck}>
-                <FontAwesomeIcon
-                  icon={task.checked ? farCheckSquare : farSquare}
-                  className={styles.checkBox}
-                />
+
+              <div
+                className={styles.delete}
+                onClick={() => {
+                  clickDelete(task.id);
+                }}
+              >
+                <AiOutlineDelete className={styles.delete} />
               </div>
             </div>
           </div>

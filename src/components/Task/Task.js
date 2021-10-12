@@ -24,6 +24,7 @@ const Task = ({ task }) => {
   const tasksSelector = useSelector(selectTasks);
   const dispatch = useDispatch();
   const inputRef = useRef();
+  const [toBeDeleted, setToBeDeleted] = useState(false);
 
   const clickImportant = () => {
     const newTaskList = tasksSelector.map((taskItem) => {

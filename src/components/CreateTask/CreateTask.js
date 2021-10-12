@@ -24,6 +24,7 @@ const CreateTask = () => {
         })
       );
     dispatch(showCreateTaskAction());
+    setTaskInputValue("");
   };
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {

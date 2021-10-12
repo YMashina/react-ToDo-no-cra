@@ -72,6 +72,7 @@ button{
   list-style-type: none;
   height: 0;
   opacity: 0;
+  z-index: 10;
 
   ul {
     list-style: none;

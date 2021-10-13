@@ -76,6 +76,7 @@ $base-color-done: rgba(210, 210, 210, 0.35);
   border: 0;
   color: #3d3d3d;
   font-family: 'Work Sans', 'Raleway', sans-serif;
+  word-wrap: break-word;
 
   &::placeholder{
     color: #3d3d3d;

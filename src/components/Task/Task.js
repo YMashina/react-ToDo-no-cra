@@ -82,7 +82,7 @@ const Task = ({ task }) => {
     >
       {isBeingEdited ? (
         <>
-          <input
+          <textarea
             ref={inputRef}
             className={styles.editInput}
             value={taskInputValue}
